@@ -24,8 +24,8 @@ jobs:
         run: |
           docker build . --file Dockerfile \
             --tag ${{ secrets.REGISTRY_URL }}/sandbox/pepup:${{ env.BUILD_DATETIME }} \
-            --build-arg MYSQL_URL=${{ secrets.MYSQL_URL }} \
-            --build-arg PG_DATABASE_URL=${{ secrets.PG_DATABASE_URL }}
+            --build-arg MYSQL_URL="${{ secrets.MYSQL_URL }}" \
+            --build-arg PG_DATABASE_URL="${{ secrets.PG_DATABASE_URL }}"
           docker push ${{ secrets.REGISTRY_URL }}/sandbox/pepup:${{ env.BUILD_DATETIME }}
 
       - name: Update manifest
