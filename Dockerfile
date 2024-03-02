@@ -14,15 +14,6 @@ WORKDIR /usr/src/myapp
 # ソースコードをコンテナにコピー
 COPY . .
 
-# Dieselのセットアップとマイグレーション実行（MySQL用）
-# MySQLのDATABASE_URLをセットアップ用に設定
-ENV DATABASE_URL=${MYSQL_URL}
-RUN diesel setup
-RUN diesel migration run
-
-# Dieselのセットアップとマイグレーション実行（PostgreSQL用）
-# PostgreSQLのDATABASE_URLをセットアップ用に再設定
-RUN export DATABASE_URL=${PG_DATABASE_URL} && diesel setup && diesel migration run
 
 # アプリケーションのビルド
 RUN cargo build --release
