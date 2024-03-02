@@ -23,14 +23,14 @@ jobs:
       - name: Build and push Docker Image
         run: |
           docker build . --file Dockerfile \
-            --tag ${{ secrets.REGISTRY_URL }}/sandbox/pepup:${{ env.BUILD_DATETIME }} \
+            --tag ${{ secrets.REGISTRY_URL }}/sandbox/move:${{ env.BUILD_DATETIME }} \
             --build-arg MYSQL_URL="${{ secrets.MYSQL_URL }}" \
             --build-arg PG_DATABASE_URL="${{ secrets.PG_DATABASE_URL }}"
-          docker push ${{ secrets.REGISTRY_URL }}/sandbox/pepup:${{ env.BUILD_DATETIME }}
+          docker push ${{ secrets.REGISTRY_URL }}/sandbox/move:${{ env.BUILD_DATETIME }}
 
       - name: Update manifest
         run: |
-          sed -i "s|image: .*|image: ${{ secrets.REGISTRY_URL }}/sandbox/pepup:${{ env.BUILD_DATETIME }}|" manifest/manifest.yaml
+          sed -i "s|image: .*|image: ${{ secrets.REGISTRY_URL }}/sandbox/move:${{ env.BUILD_DATETIME }}|" manifest/manifest.yaml
 
       - name: Commit and push manifest
         run: |

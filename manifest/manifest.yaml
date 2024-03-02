@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: move
+  namespace: sandbox
+spec:
+  containers:
+    - name: move
+      image: qroksera.com/sandbox/move:202402220927
+      imagePullPolicy: IfNotPresent
+      env:
+        - name: TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: slack-secret
+              key: token
+        - name: CHANNEL
+          valueFrom:
+            secretKeyRef:
+              name: slack-secret
+              key: channel
+  imagePullSecrets:
+    - name: harbor
+  restartPolicy: OnFailure
