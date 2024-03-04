@@ -8,6 +8,11 @@ ARG PG_DATABASE_URL
 # Diesel CLIをインストール（MySQLとPostgreSQLのサポートを追加）
 RUN cargo install diesel_cli --no-default-features --features "mysql,postgres"
 
+# 必要なライブラリをインストール
+RUN apt-get update && \
+    apt-get install -y libmariadb3 && \
+    rm -rf /var/lib/apt/lists/*
+
 # 作業ディレクトリを設定
 WORKDIR /usr/src/myapp
 
