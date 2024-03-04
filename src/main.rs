@@ -15,9 +15,13 @@ fn main() {
     let connection_mysql = &mut  establish_connection_mysql();
     let connection_pg = &mut establish_connection_pg();
 
+    println!("Connected to MySQL!");
+
     let results = stock_prices
         .load::<StockPrice>(connection_mysql)
         .expect("Error loading stock prices");
+
+    println!("Displaying {} stock prices", results.len());
 
     for stock_price in results {
         println!("{:?}", stock_price);
