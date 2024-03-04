@@ -30,6 +30,8 @@ fn main() {
             .execute(connection_pg)
             .expect("Error saving stock price");
     }
+
+    println!("Saved stock prices to PostgreSQL!");
 }
 
 fn establish_connection_mysql() -> MysqlConnection {
