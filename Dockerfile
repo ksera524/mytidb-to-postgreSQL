@@ -8,11 +8,6 @@ ARG PG_DATABASE_URL
 # Diesel CLIをインストール（MySQLとPostgreSQLのサポートを追加）
 RUN cargo install diesel_cli --no-default-features --features "mysql,postgres"
 
-# 必要なライブラリをインストール
-RUN apt-get update && \
-    apt-get install -y libmariadb3 && \
-    rm -rf /var/lib/apt/lists/*
-
 # 作業ディレクトリを設定
 WORKDIR /usr/src/myapp
 
@@ -26,6 +21,12 @@ RUN cargo build --release
 # 実行段階
 FROM debian:buster-slim
 COPY --from=builder /usr/src/myapp/target/release/mytidb-to-postgreSQL /usr/local/bin/mytidb-to-postgreSQL
+
+# 必要なライブラリをインストール
+RUN apt-get update && \
+    apt-get install -y libmariadb3 && \
+    rm -rf /var/lib/apt/lists/*
+
 
 # 実行時の環境変数を設定
 ENV MYSQL_DATABASE_URL=${MYSQL_URL}
