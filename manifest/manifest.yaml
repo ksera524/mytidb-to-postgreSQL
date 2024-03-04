@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
     - name: move
-      image: qroksera.com/sandbox/move:202403041041
+      image: qroksera.com/sandbox/move:202403041051
       imagePullPolicy: IfNotPresent
       env:
         - name: TOKEN
