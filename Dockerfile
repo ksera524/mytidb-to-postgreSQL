@@ -23,7 +23,7 @@ FROM debian:buster-slim
 COPY --from=builder /usr/src/myapp/target/release/mytidb-to-postgreSQL /usr/local/bin/mytidb-to-postgreSQL
 
 # 実行時の環境変数を設定
-ENV DATABASE_URL=${MYSQL_URL}
+ENV MYSQL_DATABASE_URL=${MYSQL_URL}
 ENV PG_DATABASE_URL=${PG_DATABASE_URL}
 
 # コンテナ起動時にアプリケーションを実行
