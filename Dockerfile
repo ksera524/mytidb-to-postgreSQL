@@ -24,7 +24,7 @@ COPY --from=builder /usr/src/myapp/target/release/mytidb-to-postgreSQL /usr/loca
 
 # 必要なライブラリをインストール
 RUN apt-get update && \
-    apt-get install -y libmariadb3 && \
+    apt-get install -y libpq-dev && \
     rm -rf /var/lib/apt/lists/*
 
 
