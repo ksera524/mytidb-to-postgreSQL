@@ -8,7 +8,7 @@ diesel::table! {
         #[max_length = 255]
         market -> Varchar,
         date -> Date,
-        price -> Float,
+        price -> Decimal,
         volume -> Bigint,
     }
 }

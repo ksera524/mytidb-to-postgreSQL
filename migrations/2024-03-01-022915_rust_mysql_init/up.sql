@@ -5,7 +5,7 @@ CREATE TABLE stock_prices (
     stock_symbol VARCHAR(255) NOT NULL,
     market VARCHAR(255) NOT NULL,
     date DATE NOT NULL,
-    price FLOAT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
     volume BIGINT NOT NULL
 );
 
